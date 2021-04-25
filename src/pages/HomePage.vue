@@ -1,9 +1,7 @@
 <template>
   <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <div class="row">
-      <!-- Profile bar col 3-->
       <Post v-for="post in state.posts" :key="post.id" :post="post" />
-      <!-- Ads col 2-->
     </div>
   </div>
 </template>

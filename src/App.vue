@@ -3,7 +3,10 @@
     <Navbar />
   </header>
   <main class = "row">
-    <div class = "col-md-9 col-12">
+        <div class = "col-3 d-md-block d-none">
+      <Profile />
+    </div>
+    <div class = "col-md-6 col-6">
       <router-view />
     </div>
     <div class = "col-3 d-md-block d-none">

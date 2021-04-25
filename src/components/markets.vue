@@ -1,26 +1,23 @@
 <template>
-  <div class="row w-100 column-height mt-3">
-    <div class="col-12" v-if="markets[0] != null">
-      <img class="img-fluid mb-3" :src="markets[0].tall" alt="">
-      <img class="img-fluid my-3" :src="markets[1].tall" alt="">
+  <div class="row column-height m-2">
+    <div class="col-12" v-if="markets[0] !=null">
+      <img class="img-fluid my-2" :src="markets[0].tall" alt="">
+      <img class="img-fluid" :src="markets[1].tall" alt="">
     </div>
   </div>
 </template>
 
 <script>
 import { marketsService } from '../services/MarketsService'
-import { computed, onMounted } from 'vue'
+import { reactive, computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import Notification from '../utils/Notification'
 export default {
   name: 'Markets',
-  props: {
-    post: {
-      type: Object,
-      required: true
-    }
-  },
   setup() {
+    const state = reactive({
+      markets: computed(() => AppState.markets)
+    })
     onMounted(async() => {
       try {
         await marketsService.getAllMarkets()
@@ -29,6 +26,7 @@ export default {
       }
     })
     return {
+      state,
       markets: computed(() => AppState.markets)
     }
   },
