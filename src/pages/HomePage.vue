@@ -18,12 +18,12 @@ export default {
   name: 'Home',
   setup() {
     const state = reactive({
-      posts: computed(() => AppState.posts),
-      ads: computed(() => AppState.ads)
+      posts: computed(() => AppState.posts)
     })
     onMounted(async() => {
       try {
         await postsService.getAll()
+        state.loading = false
       } catch (error) {
         Notification.toast('Error: ' + error, 'error')
       }

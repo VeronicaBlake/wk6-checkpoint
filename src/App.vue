@@ -2,8 +2,13 @@
   <header>
     <Navbar />
   </header>
-  <main>
-    <router-view />
+  <main class = "row">
+    <div class = "col-md-9 col-12">
+      <router-view />
+    </div>
+    <div class = "col-3 d-md-block d-none">
+      <Markets />
+    </div>
   </main>
   <footer>
     <div class="bg-primary text-light text-center p-4">

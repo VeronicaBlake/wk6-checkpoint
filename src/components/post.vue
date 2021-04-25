@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-7 card shadow flex-grow-1 post-card p-2 my-2">
+      <div class="col-md-11 col-9 card shadow flex-grow-1 post-card p-2 my-2">
         <h5 class="text-left mx-4 " v-if="post.creator">
           <span><img class="rounded-circle img-icon" :src="post.creator.picture" alt=""></span> {{ post.creator.name }}
         </h5>
