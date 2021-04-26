@@ -30,47 +30,16 @@
         <li class="nav-item">
         </li>
       </ul>
-      <span class="navbar-text">
-        <button
-          class="btn btn-outline-light text-uppercase"
-          @click="login"
-          v-if="!user.isAuthenticated"
-        >
-          Login
-        </button>
-
-        <div class="dropdown" v-else>
-          <div
-            class="dropdown-toggle"
-            @click="state.dropOpen = !state.dropOpen"
-          >
-            <img
-              :src="user.picture"
-              alt="user photo"
-              height="40"
-              class="rounded"
-            />
-            <span class="mx-3 text-light">{{ user.name }}</span>
-          </div>
-          <div
-            class="dropdown-menu p-0 list-group w-100"
-            :class="{ show: state.dropOpen }"
-            @click="state.dropOpen = false"
-          >
-            <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item list-group-item-action hoverable">
-                Account
-              </div>
-            </router-link>
-            <div
-              class="list-group-item list-group-item-action hoverable"
-              @click="logout"
-            >
-              logout
-            </div>
-          </div>
-        </div>
-      </span>
+    </div>
+    <div class="input-group rounded">
+      <input type="search"
+      class="form-control rounded"
+      placeholder="Search"
+      aria-label="Search"
+      aria-describedby="search-addon" />
+        <span class="input-group-text border-0" id="search-addon">
+          <i class="fas fa-search"></i>
+        </span>
     </div>
   </nav>
 </template>
