@@ -1,6 +1,6 @@
 <template>
   <div class="row column-height bg-light shadow m-2">
-    <span class="m-4">
+    <s class="m-4">
       <button
         class="btn btn-outline-dark text-uppercase"
         @click="login"
@@ -23,7 +23,7 @@
       >
         Logout
       </div>
-    </span>
+    </s>
   </div>
 </template>
 
@@ -40,6 +40,7 @@ export default {
     return {
       state,
       user: computed(() => AppState.user),
+      account: computed(() => AppState.account),
       async login() {
         AuthService.loginWithPopup()
       },
