@@ -8,13 +8,16 @@
       >
         Login
       </button>
-      <img
-        :src="user.picture"
-        alt="user photo"
-        height="180"
-        class="rounded-circle"
-        v-if="user.isAuthenticated"
-      />
+
+      <router-link :to="{name: 'ProfilePage', params: {id:account.id}}">
+        <img
+          :src="user.picture"
+          alt="user photo"
+          height="180"
+          class="rounded-circle"
+          v-if="user.isAuthenticated"
+        />
+      </router-link>
       <h5>{{ user.name }}</h5>
       <div
         class="btn btn-outline-dark text-uppercase"

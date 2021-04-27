@@ -3,7 +3,7 @@
     <h1>Profile Page!</h1>
     {{ state.activeProfile }}
     <form @submit.prevent="createPost" v-if="state.user.isAuthenticated && state.account.id === route.params.id">
-      <input type="text" name="" id="">
+      <input type="text" id="body" placeholder="Share your Veronica Thoughts!" required v-model="state.newPost.body">
     </form>
   </div>
   <div>
@@ -17,7 +17,6 @@ import { AppState } from '../AppState'
 import { profilesService } from '../services/ProfilesService'
 import { postsService } from '../services/PostsService'
 import Notification from '../utils/Notification'
-import { logger } from '../utils/Logger'
 import { useRoute } from 'vue-router'
 import { accountService } from '../services/AccountService'
 export default {
@@ -49,7 +48,6 @@ export default {
           Notification.toast('Successfully Created', 'success')
           state.newPost = {}
         } catch (error) {
-          logger.log(error)
           Notification.toast(error, 'error')
         }
       }
