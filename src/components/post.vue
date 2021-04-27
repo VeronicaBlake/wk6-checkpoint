@@ -57,7 +57,6 @@ export default {
       async like() {
         try {
           await postsService.likePost(props.post.id)
-          Notification.toast('Deleted', 'sucess')
         } catch (error) {
           Notification.toast(error, 'error')
         }
