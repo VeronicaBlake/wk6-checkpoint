@@ -1,21 +1,20 @@
 <template>
-  <div v-if="post != null">
+  <div class="container-fluid" v-if="post != null">
     <div class="row bg-light my-2 shadow">
       <div class="card col-md-12 col-9 flex-grow-1 post-card p-2">
         <div>
           <router-link :to="{name: 'ProfilePage', params: {id:post.creator.id}}">
-            <img class="rounded-circle img-icon" :src="post.creator.picture" alt=""> {{ post.creator.name }}
+            <img class="rounded-circle img-icon" :src="post.creator.picture" alt="">{{ post.creator.name }}
           </router-link>
-          <h5 class="text-left mx-4 " v-if="post.creator">
-            <div> Created at: {{ post.createdAt }}</div>
-          </h5>
+          <span class="text-left mx-4 " v-if="post.creator"> {{ post.createdAt }}
+          </span>
           <button v-if="state.account && state.account.id == post.creatorId" class="btn btn-danger" @click="deletePost">
             Delete
           </button>
         </div>
         <h6 class="body-text">
           <span>{{ post.body }}</span>
-          <img class="card-img-bottom w-100" v-if="post.imgUrl" :src="post.imgUrl" alt="post.body">
+          <img class="card-img-bottom w-100 meme" v-if="post.imgUrl" :src="post.imgUrl" alt="post.body">
         </h6>
         <div>
           <h3>
@@ -68,6 +67,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .meme {
+    max-height: 300rem;
+    max-width: 50rem
+  }
+
   .img-icon {
     width: 4rem;
   }

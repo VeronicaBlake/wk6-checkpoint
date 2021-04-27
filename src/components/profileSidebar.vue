@@ -1,6 +1,6 @@
 <template>
   <div class="row column-height bg-light shadow m-2">
-    <s class="m-4">
+    <div class="m-4">
       <button
         class="btn btn-outline-dark text-uppercase"
         @click="login"
@@ -26,7 +26,7 @@
       >
         Logout
       </div>
-    </s>
+    </div>
   </div>
 </template>
 

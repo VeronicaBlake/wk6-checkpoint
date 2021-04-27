@@ -1,13 +1,26 @@
 <template>
-  <div>
-    <h1>Profile Page!</h1>
-    {{ state.activeProfile }}
+  <div class="container-fluid">
+    <div class="row bg-light shadow">
+      <div class="col-12">
+        <div>
+        </div>
+      </div>
+      {{ state.activeProfile }}
+    </div>
     <form @submit.prevent="createPost" v-if="state.user.isAuthenticated && state.account.id === route.params.id">
-      <input type="text" id="body" placeholder="Share your Veronica Thoughts!" required v-model="state.newPost.body">
+      <div class="form-group">
+        <input type="text"
+               class="form-control"
+               id="body"
+               placeholder="Share your Veronica Thoughts!"
+               required
+               v-model="state.newPost.body"
+        >
+      </div>
+      <div>
+        <Post v-for="post in activePosts" :key="post.id" :post="post" />
+      </div>
     </form>
-  </div>
-  <div>
-    <Post v-for="post in activePosts" :key="post.id" :post="post" />
   </div>
 </template>
 
