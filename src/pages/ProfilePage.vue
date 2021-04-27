@@ -2,10 +2,12 @@
   <div>
     <h1>Profile Page!</h1>
     {{ state.activeProfile }}
-    <form @submit.prevent="createPost" v-if="user.isAuthenticated && user.userInfo.id === route.params.id">
+    <form @submit.prevent="createPost" v-if="state.user.isAuthenticated && state.account.id === route.params.id">
       <input type="text" name="" id="">
     </form>
-    <Post v-for="post in state.posts" :key="post.id" :post="post" />
+  </div>
+  <div>
+    <Post v-for="post in activePosts" :key="post.id" :post="post" />
   </div>
 </template>
 
@@ -19,34 +21,41 @@ import { logger } from '../utils/Logger'
 import { useRoute } from 'vue-router'
 import { accountService } from '../services/AccountService'
 export default {
-  name: 'Profile',
+  name: 'ProfilePage',
   setup() {
     const route = useRoute()
     const state = reactive({
       newPost: {},
       activeProfile: computed(() => AppState.activeProfile),
       user: computed(() => AppState.user),
-      profile: computed(() => AppState.profile)
+      account: computed(() => AppState.account)
     })
     onMounted(async() => {
-      await profilesService.getActiveProfile(route.params.id)
-      await accountService.getProfilePosts(route.params.id)
+      try {
+        await profilesService.getActiveProfile(route.params.id)
+        await profilesService.getProfilePosts(route.params.id)
+        await accountService.getProfile(route.params.id)
+      } catch (error) {
+        Notification.toast(error, 'error')
+      }
     })
     return {
       state,
-      async create() {
+      route,
+      activePosts: computed(() => AppState.activePosts),
+      async createPost() {
         try {
-          await postsService.create(state.newProject)
-          state.newProject = {}
+          await postsService.createPost(state.newPost)
           Notification.toast('Successfully Created', 'success')
           state.newPost = {}
         } catch (error) {
           logger.log(error)
-          Notification.toast('Error: ' + error, 'error')
+          Notification.toast(error, 'error')
         }
       }
     }
-  }
+  },
+  components: {}
 }
 </script>
 

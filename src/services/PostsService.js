@@ -14,7 +14,7 @@ class PostsService {
   }
 
   async likePost(id) {
-    const res = await api.post('api/posts/' + id + '/like')
+    const res = await api.post(`api/posts/${id}/like`)
     const post = AppState.posts.find(p => p.id === id)
     post.likes = res.data.likes
   }

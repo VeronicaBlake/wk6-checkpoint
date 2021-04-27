@@ -1,9 +1,9 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="card col-md-12 col-9 shadow flex-grow-1 post-card p-2 my-2">
+  <div v-if="post != null">
+    <div class="row bg-light my-2 shadow">
+      <div class="card col-md-12 col-9 flex-grow-1 post-card p-2">
         <div>
-          <router-link :to="{name: 'Profile', params: {id:account.id}}">
+          <router-link :to="{name: 'ProfilePage', params: {id:post.creator.id}}">
             <img class="rounded-circle img-icon" :src="post.creator.picture" alt=""> {{ post.creator.name }}
           </router-link>
           <h5 class="text-left mx-4 " v-if="post.creator">
@@ -18,9 +18,9 @@
           <img class="card-img-bottom w-100" v-if="post.imgUrl" :src="post.imgUrl" alt="post.body">
         </h6>
         <div>
-          <p @click="like">
-            likes: {{ post.likes.length }}
-          </p>
+          <h3>
+            <i class="fas fa-heart text-danger" @click="like"></i> {{ post.likes.length }}
+          </h3>
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@ export default {
           Notification.toast(error, 'error')
         }
       },
-      async like(id) {
+      async like() {
         try {
           await postsService.likePost(props.post.id)
           Notification.toast('Deleted', 'sucess')
@@ -78,6 +78,6 @@ export default {
   }
 
   .post-card {
-    height: 10rem
+    height: 13rem
   }
 </style>
