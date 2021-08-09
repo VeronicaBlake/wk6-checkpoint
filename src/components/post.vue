@@ -1,22 +1,30 @@
 <template>
   <div class="container-fluid" v-if="post != null">
     <div class="row bg-light my-2 shadow">
-      <div class="card col-md-12 col-9 flex-grow-1 post-card p-2">
-        <div>
+      <div class="col-6 post-card p-2">
+        <div class="row">
           <router-link :to="{name: 'ProfilePage', params: {id:post.creator.id}}">
-            <img class="rounded-circle img-icon" :src="post.creator.picture" alt="">{{ post.creator.name }}
+            <img class="rounded-circle profile-pic" :src="post.creator.picture" alt="">{{ post.creator.name }}
           </router-link>
-          <span class="text-left mx-4 " v-if="post.creator"> {{ post.createdAt }}
+        </div>
+        <div class="row">
+          <span class=" col text-left mx-4 " v-if="post.creator"> Created at: {{ post.createdAt }}
           </span>
           <button v-if="state.account && state.account.id == post.creatorId" class="btn btn-danger" @click="deletePost">
             Delete
           </button>
         </div>
-        <h6 class="body-text">
-          <span>{{ post.body }}</span>
-          <img class="card-img-bottom w-100 meme" v-if="post.imgUrl" :src="post.imgUrl" alt="post.body">
-        </h6>
-        <div>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <h6 class="body-text">
+            <span>{{ post.body }}</span>
+          </h6>
+        </div>
+        <div class="row">
+          <img class="meme" v-if="post.imgUrl" :src="post.imgUrl">
+        </div>
+        <div class="row">
           <h3>
             <i class="fas fa-heart text-danger" @click="like"></i> {{ post.likes.length }}
           </h3>
@@ -48,7 +56,7 @@ export default {
       async deletePost() {
         try {
           await postsService.deletePost(props.post.id)
-          Notification.toast('Deleted', 'sucess')
+          Notification.toast('Deleted', 'success')
         } catch (error) {
           Notification.toast(error, 'error')
         }
@@ -68,12 +76,14 @@ export default {
 
 <style lang="scss" scoped>
   .meme {
-    max-height: 300rem;
-    max-width: 50rem
+    max-height: 20vh;
+    max-width: 20vw
   }
 
-  .img-icon {
-    width: 4rem;
+  .profile-pic {
+    max-width: 10vw;
+    max-height: 10vh;
+    margin-right: 5%;
   }
 
   .body-text{

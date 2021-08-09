@@ -5,22 +5,33 @@
         <div>
         </div>
       </div>
-      {{ state.activeProfile }}
+      {{ state.account.name }}
+      {{ state.account.subs }}
+      <i></i>{{ state.account.picture }}
+      {{ state.account.bio }}
+      {{ state.account.coverImg }}
+      {{ state.account.class }}
+      {{ state.account.graduated }}
+      {{ state.account.github }}
+      {{ state.account.linkedin }}
+      {{ state.account.resume }}
     </div>
-    <form @submit.prevent="createPost" v-if="state.user.isAuthenticated && state.account.id === route.params.id">
-      <div class="form-group">
-        <input type="text"
-               class="form-control"
-               id="body"
-               placeholder="Share your Veronica Thoughts!"
-               required
-               v-model="state.newPost.body"
-        >
-      </div>
-      <div>
-        <Post v-for="post in activePosts" :key="post.id" :post="post" />
-      </div>
-    </form>
+    <div class="my-2">
+      <form @submit.prevent="createPost" v-if="state.user.isAuthenticated && state.account.id === route.params.id">
+        <div class="form-group">
+          <input type="text"
+                 class="form-control"
+                 id="body"
+                 placeholder="Share your Veronica Thoughts!"
+                 required
+                 v-model="state.newPost.body"
+          >
+        </div>
+        <div>
+          <Post v-for="post in activePosts" :key="post.id" :post="post" />
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 

@@ -2,11 +2,13 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img
-          alt="logo"
-          src="../assets/img/cw-logo.png"
-          height="45"
-        />
+        <div class="text-light">
+          <i class="fas fa-network-wired text-light">
+            <span>
+              The Network
+            </span>
+          </i>
+        </div>
       </div>
     </router-link>
     <button
@@ -20,7 +22,7 @@
     >
       <span class="navbar-toggler-icon" />
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
+    <!-- <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <router-link :to="{ name: 'Home' }" class="nav-link">
@@ -30,7 +32,7 @@
         <li class="nav-item">
         </li>
       </ul>
-    </div>
+    </div> -->
     <div class="input-group rounded">
       <input type="search"
              class="form-control rounded"
